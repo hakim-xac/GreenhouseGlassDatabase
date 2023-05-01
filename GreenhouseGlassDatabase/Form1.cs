@@ -29,7 +29,11 @@ namespace GreenhouseGlassDatabase
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            Form3 new_form = new Form3();
+            new_form.Owner = this;
+            this.Visible = false;
+            new_form.ShowDialog();
+            this.Visible = true;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -39,7 +43,6 @@ namespace GreenhouseGlassDatabase
             this.Visible = false;
             new_form.ShowDialog();
             this.Visible = true;
-            
         }
     }
 }

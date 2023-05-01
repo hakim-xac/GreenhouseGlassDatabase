@@ -29,6 +29,7 @@ namespace grocery_store
             dg.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dg.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dg.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
         }
 
         public static void fillComboBox(System.Windows.Forms.ComboBox cb, DataTable dt)

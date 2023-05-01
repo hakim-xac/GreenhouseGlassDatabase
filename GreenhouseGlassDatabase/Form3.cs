@@ -11,16 +11,20 @@ using System.Windows.Forms;
 
 namespace GreenhouseGlassDatabase
 {
-    public partial class Form2 : Form
+    public partial class Form3 : Form
     {
         private DBWrapper db_;
-
-        public Form2()
+        public Form3()
         {
             InitializeComponent();
         }
 
-        private void Form2_Load(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void Form3_Load(object sender, EventArgs e)
         {
             db_ = new DBWrapper("greenhouse_glass_database.db");
 
@@ -30,15 +34,13 @@ namespace GreenhouseGlassDatabase
                 Application.Exit();
             }
 
-            SecondaryMethods.fillDataGrid(dataGridView1, db_.selectFromTable());
+            //SecondaryMethods.fillDataGrid(dataGridView1, db.selectFromTable());
             header_panel.Visible = db_.isEmpty();
-
         }
 
-        private void Form2_FormClosing(object sender, FormClosingEventArgs e)
+        private void Form3_FormClosing(object sender, FormClosingEventArgs e)
         {
             db_?.Close();
         }
-
     }
 }

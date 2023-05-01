@@ -33,7 +33,7 @@ namespace GreenhouseGlassDatabase
         }
         public bool isEmpty(string table_name = "general", string field_name = "id")
         {
-            return selectQuery("select "+ field_name + " from " + table_name + " limit 1").Rows.Count != 0;
+            return selectQuery("select "+ field_name + " from " + table_name + " limit 1").Rows.Count == 0;
         }
 
         public DataTable selectFromTable(string field = "", string table_name="general")
