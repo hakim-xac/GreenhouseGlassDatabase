@@ -22,7 +22,8 @@ namespace GreenhouseGlassDatabase
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            db_ = new DBWrapper("greenhouse_glass_database.db");
+            //db_ = new DBWrapper("greenhouse_glass_database.db", "general");
+            db_ = new DBWrapper("greenhouse_glass_database.db", "replacement_data");
 
             if (db_ == null && !db_.isOpen())
             {
@@ -32,6 +33,7 @@ namespace GreenhouseGlassDatabase
 
             SecondaryMethods.fillDataGrid(dataGridView1, db_.selectFromTable());
             header_panel.Visible = db_.isEmpty();
+
 
         }
 

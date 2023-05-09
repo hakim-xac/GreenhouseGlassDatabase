@@ -24,7 +24,11 @@ namespace GreenhouseGlassDatabase
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            Form4 new_form = new Form4();
+            new_form.Owner = this;
+            this.Visible = false;
+            new_form.ShowDialog();
+            this.Visible = true;
         }
 
         private void button2_Click(object sender, EventArgs e)

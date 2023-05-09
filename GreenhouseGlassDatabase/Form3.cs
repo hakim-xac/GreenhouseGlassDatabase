@@ -14,6 +14,8 @@ namespace GreenhouseGlassDatabase
     public partial class Form3 : Form
     {
         private DBWrapper db_;
+        private DataTable dt_;
+        private bool is_empty_database_;
         public Form3()
         {
             InitializeComponent();
@@ -26,7 +28,7 @@ namespace GreenhouseGlassDatabase
 
         private void Form3_Load(object sender, EventArgs e)
         {
-            db_ = new DBWrapper("greenhouse_glass_database.db");
+            db_ = new DBWrapper("greenhouse_glass_database.db", "general");
 
             if (db_ == null && !db_.isOpen())
             {
@@ -34,13 +36,105 @@ namespace GreenhouseGlassDatabase
                 Application.Exit();
             }
 
-            //SecondaryMethods.fillDataGrid(dataGridView1, db.selectFromTable());
-            header_panel.Visible = db_.isEmpty();
+            header_panel.Visible = true;
+            if (db_.isEmpty())
+            {
+                is_empty_database_ = true;
+                return;
+            }
+
+            button1.Enabled = false;
+            header_panel.Visible = false;
+            dt_ = db_.selectFromTable("size_width, size_height");
+            SecondaryMethods.fillComboBox(comboBox2, dt_);
+
         }
 
         private void Form3_FormClosing(object sender, FormClosingEventArgs e)
         {
             db_?.Close();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (!int.TryParse(textBox1.Text, out int _)) textBox1.Clear();
+            if (textBox1.Text.Length > 0) button1.Enabled = true;
+            else button1.Enabled = false;
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            if (!int.TryParse(textBox2.Text, out int _)) textBox2.Clear();
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            if (!int.TryParse(textBox3.Text, out int _)) textBox3.Clear();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int count;
+            if(!int.TryParse(textBox1.Text, out count))
+            {
+                MessageBox.Show("Количество, должно быть больше 0!\r\nИзмените ввод!");
+                return;
+            }
+            int width=0;
+            int height=0;
+            if (!is_empty_database_)
+            {
+                 width = int.Parse(dt_.Rows[comboBox2.SelectedIndex][0].ToString());
+                 height = int.Parse(dt_.Rows[comboBox2.SelectedIndex][1].ToString());
+            }
+
+            int tmp_width;
+            int tmp_height;
+            if (int.TryParse(textBox2.Text, out tmp_width) && int.TryParse(textBox3.Text, out tmp_height))
+            {
+                width = tmp_width;
+                height = tmp_height;
+            }
+
+            if(width == 0 || height == 0 || count == 0)
+            {
+                MessageBox.Show("Ошибка добавления данных в базу!\r\n" +
+                    "Ширина и высота должны быть больше 0\r\n" +
+                    ", а также количество!");
+                return;
+            }
+
+            DBWrapper.DBData[] arr = { new DBWrapper.DBData("size_width", width.ToString())
+                , new DBWrapper.DBData("size_height", height.ToString())
+                , new DBWrapper.DBData("count", count.ToString())
+                , new DBWrapper.DBData("square", (height * width * count).ToString()) };
+
+            var find_data_table = db_.isIsset(arr);
+            if (find_data_table.Rows.Count > 0)
+            {
+                if (!db_.updateInTable(arr, find_data_table))
+                {
+                    MessageBox.Show("Ошибка добавления данных в базу!");
+                    return;
+                }
+
+                MessageBox.Show("Данные успешно изменены!");
+            }
+            else
+            {
+                if (!db_.writeToTable(arr))
+                {
+                    MessageBox.Show("Ошибка добавления данных в базу!");
+                    return;
+                }
+                comboBox2.Items.Add(width.ToString() + "*" + height.ToString());
+                MessageBox.Show("Данные успешно добавлены!");
+            }
+
+            textBox1.Clear();
+            textBox2.Clear();
+            textBox3.Clear();
+            is_empty_database_ = true;
         }
     }
 }

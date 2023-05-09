@@ -35,8 +35,11 @@ namespace grocery_store
         public static void fillComboBox(System.Windows.Forms.ComboBox cb, DataTable dt)
         {
             cb.Items.Clear();
-            for (int i = 1, ie = dt.Columns.Count - 1; i < ie; ++i) cb.Items.Add(dt.Columns[i].ColumnName);
+            foreach ( DataRow dr in dt.Rows) {
+                cb.Items.Add(dr[0] + "*" + dr[1]);
+            }
             if (cb.Items.Count > 0 ) cb.SelectedIndex = 0;
+
         }
         public static void fillComboBox(System.Windows.Forms.ComboBox cb, Hashtable ht)
         {
