@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace grocery_store
 {
-    internal class SecondaryMethods
+    internal static class SecondaryMethods
     {
 
         public static String TypeGlassToString(TypeGlass tg)
@@ -25,10 +25,6 @@ namespace grocery_store
                 case TypeGlass.Sixth:                       return      "6";
                 case TypeGlass.Seventh:                     return      "7";
                 case TypeGlass.Eighth:                      return      "8";
-                case TypeGlass.BetweenSitesOneSecond:       return      "1/2";
-                case TypeGlass.BetweenSitesThirdFourth:     return      "3/4";
-                case TypeGlass.BetweenSitesFifthSixth:      return      "5/6";
-                case TypeGlass.BetweenSitesSeventhEighth:   return      "7/8";
                 case TypeGlass.Unknown:                     return      "-";
                 default:                                    return      "-";
             }
@@ -52,7 +48,6 @@ namespace grocery_store
             dg.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dg.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dg.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
         }
 
         public static void fillComboBox(System.Windows.Forms.ComboBox cb, DataTable dt)

@@ -14,10 +14,6 @@ namespace GreenhouseGlassDatabase
 
     public enum TypeGlass{
         Unknown
-            , BetweenSitesOneSecond
-            , BetweenSitesThirdFourth
-            , BetweenSitesFifthSixth
-            , BetweenSitesSeventhEighth
             , One
             , Second
             , Third
@@ -26,5 +22,28 @@ namespace GreenhouseGlassDatabase
             , Sixth
             , Seventh
             , Eighth
+    }
+
+    public enum Place
+    {
+        ButtWidth
+            , SideWidth
+            , HeightFirstRowFirstAreaInSide
+            , HeightFirstRowFirstAreaOutSide
+            , HeightSecondRowFirstAreaInSide
+            , HeightSecondRowFirstAreaOutSide
+            , HeightFirstRowSecondAreaInSide
+            , HeightFirstRowSecondAreaOutSide
+            , HeightSecondRowSecondAreaInSide
+            , HeightSecondRowSecondAreaOutSide
+            , HeightFirstRowButtAreaInSide
+            , HeightFirstRowButtAreaOutSide
+            , HeightSecondRowButtAreaInSide
+            , HeightSecondRowButtAreaOutSide
+            , BetweenSiteNarrowWidth
+            , BetweenSiteMiddleWidth
+            , BetweenSiteWideWidth
+            , BetweenSiteHeight
+
     }
 }

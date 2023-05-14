@@ -1,4 +1,5 @@
-﻿using System;
+﻿using grocery_store;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,11 @@ namespace GreenhouseGlassDatabase
 {
     public partial class Form4 : Form
     {
+        private Config config_;
         public Form4()
         {
             InitializeComponent();
+            config_ = new Config();
         }
 
         private void button14_Click(object sender, EventArgs e)
@@ -28,40 +31,48 @@ namespace GreenhouseGlassDatabase
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form6 new_form = new Form6();
+            Form5 new_form = new Form5();
             new_form.Owner = this;
             this.Visible = false;
-            new_form.setSite(TypeGlass.BetweenSitesOneSecond);
+            new_form.setSite(int.Parse(SecondaryMethods.TypeGlassToString(TypeGlass.One)));
+            new_form.setHeight(config_.actualSize(Place.BetweenSiteHeight));
+            new_form.setWidth(785);
             new_form.ShowDialog();
             this.Visible = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form6 new_form = new Form6();
+            Form5 new_form = new Form5();
             new_form.Owner = this;
             this.Visible = false;
-            new_form.setSite(TypeGlass.BetweenSitesThirdFourth);
+            new_form.setSite(int.Parse(SecondaryMethods.TypeGlassToString(TypeGlass.Third)));
+            new_form.setHeight(config_.actualSize(Place.BetweenSiteHeight));
+            new_form.setWidth(785);
             new_form.ShowDialog();
             this.Visible = true;
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            Form6 new_form = new Form6();
+            Form5 new_form = new Form5();
             new_form.Owner = this;
             this.Visible = false;
-            new_form.setSite(TypeGlass.BetweenSitesFifthSixth);
+            new_form.setSite(int.Parse(SecondaryMethods.TypeGlassToString(TypeGlass.Fifth)));
+            new_form.setHeight(config_.actualSize(Place.BetweenSiteHeight));
+            new_form.setWidth(785);
             new_form.ShowDialog();
             this.Visible = true;
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            Form6 new_form = new Form6();
+            Form5 new_form = new Form5();
             new_form.Owner = this;
             this.Visible = false;
-            new_form.setSite(TypeGlass.BetweenSitesSeventhEighth);
+            new_form.setSite(int.Parse(SecondaryMethods.TypeGlassToString(TypeGlass.Eighth)));
+            new_form.setHeight(config_.actualSize(Place.BetweenSiteHeight));
+            new_form.setWidth(785);
             new_form.ShowDialog();
             this.Visible = true;
         }
@@ -144,10 +155,6 @@ namespace GreenhouseGlassDatabase
             new_form.setSite(TypeGlass.Eighth);
             new_form.ShowDialog();
             this.Visible = true;
-        }
-
-        private void button13_Click(object sender, EventArgs e)
-        {
         }
     }
 }
