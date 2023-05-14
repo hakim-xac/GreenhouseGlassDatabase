@@ -1,7 +1,10 @@
-﻿namespace GreenhouseGlassDatabase
+﻿using grocery_store;
+
+namespace GreenhouseGlassDatabase
 {
     partial class Form1
     {
+
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -122,6 +125,7 @@
             this.button4.TabIndex = 4;
             this.button4.Text = "Просмотр  Данных о Замене";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Form1
             // 

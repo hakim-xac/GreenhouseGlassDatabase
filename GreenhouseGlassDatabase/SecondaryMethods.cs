@@ -11,6 +11,7 @@ namespace grocery_store
 {
     internal class SecondaryMethods
     {
+
         public static void fillDataGrid(DataGridView dg, DataTable dt, bool is_modified = false)
         {
             dg.DataSource = dt;
@@ -21,7 +22,7 @@ namespace grocery_store
             dg.AllowUserToAddRows = false;
             dg.AllowUserToDeleteRows = false;
             dg.AllowUserToResizeColumns = false;
-            dg.MultiSelect = false;
+            dg.MultiSelect = true;
             dg.ReadOnly = !is_modified;
             dg.Visible = true;
             dg.AutoGenerateColumns = true;

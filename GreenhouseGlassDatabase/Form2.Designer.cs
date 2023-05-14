@@ -1,7 +1,10 @@
-﻿namespace GreenhouseGlassDatabase
+﻿using grocery_store;
+
+namespace GreenhouseGlassDatabase
 {
     partial class Form2
     {
+        public TableType table_type_ = TableType.General;
         /// <summary>
         /// Required designer variable.
         /// </summary>

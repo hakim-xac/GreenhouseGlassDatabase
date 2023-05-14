@@ -22,9 +22,15 @@ namespace GreenhouseGlassDatabase
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            //db_ = new DBWrapper("greenhouse_glass_database.db", "general");
-            db_ = new DBWrapper("greenhouse_glass_database.db", "replacement_data");
-
+            switch (table_type_)
+            {
+                case TableType.General:
+                    db_ = new DBWrapper("greenhouse_glass_database.db", "general");
+                    break;
+                case TableType.ReplacementData:
+                    db_ = new DBWrapper("greenhouse_glass_database.db", "replacement_data");
+                    break;
+            }
             if (db_ == null && !db_.isOpen())
             {
                 MessageBox.Show("Ошибка загрузки базы данных!");

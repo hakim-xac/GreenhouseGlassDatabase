@@ -1,4 +1,5 @@
-﻿using System;
+﻿using grocery_store;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace GreenhouseGlassDatabase
 {
     public partial class Form1 : Form
     {
+
         public Form1()
         {
             InitializeComponent();
@@ -43,6 +45,17 @@ namespace GreenhouseGlassDatabase
         private void button3_Click(object sender, EventArgs e)
         {
             Form2 new_form = new Form2();
+            new_form.table_type_ = TableType.General;
+            new_form.Owner = this;
+            this.Visible = false;
+            new_form.ShowDialog();
+            this.Visible = true;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Form2 new_form = new Form2();
+            new_form.table_type_ = TableType.ReplacementData;
             new_form.Owner = this;
             this.Visible = false;
             new_form.ShowDialog();

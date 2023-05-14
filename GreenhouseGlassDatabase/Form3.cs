@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static GreenhouseGlassDatabase.DBWrapper;
 
 namespace GreenhouseGlassDatabase
 {
@@ -74,10 +75,10 @@ namespace GreenhouseGlassDatabase
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int count;
+            int count=0;
             if(!int.TryParse(textBox1.Text, out count))
             {
-                MessageBox.Show("Количество, должно быть больше 0!\r\nИзмените ввод!");
+                MessageBox.Show("Ошибка преобразованеия данных!\r\nПовторите ввод!");
                 return;
             }
             int width=0;
@@ -88,19 +89,19 @@ namespace GreenhouseGlassDatabase
                  height = int.Parse(dt_.Rows[comboBox2.SelectedIndex][1].ToString());
             }
 
-            int tmp_width;
-            int tmp_height;
+            int tmp_width=0;
+            int tmp_height=0;
             if (int.TryParse(textBox2.Text, out tmp_width) && int.TryParse(textBox3.Text, out tmp_height))
             {
                 width = tmp_width;
                 height = tmp_height;
             }
 
-            if(width == 0 || height == 0 || count == 0)
+            if(width == 0 || height == 0 || count == 0 || count > 1000)
             {
                 MessageBox.Show("Ошибка добавления данных в базу!\r\n" +
                     "Ширина и высота должны быть больше 0\r\n" +
-                    ", а также количество!");
+                    ", а также количество не должно выходить из диапазона [0; 1000]!");
                 return;
             }
 
@@ -110,9 +111,17 @@ namespace GreenhouseGlassDatabase
                 , new DBWrapper.DBData("square", (height * width * count).ToString()) };
 
             var find_data_table = db_.isIsset(arr);
+            
             if (find_data_table.Rows.Count > 0)
             {
-                if (!db_.updateInTable(arr, find_data_table))
+                int new_count = int.Parse(find_data_table.Rows[0][3].ToString()) + int.Parse(arr[2].V2);
+
+                DBWrapper.DBData[] new_arr = { new DBWrapper.DBData("size_width", width.ToString())
+                , new DBWrapper.DBData("size_height", height.ToString())
+                , new DBWrapper.DBData("count", new_count.ToString())
+                , new DBWrapper.DBData("square", (height * width * new_count).ToString()) };
+                
+                if (!db_.updateInTable(new_arr, find_data_table))
                 {
                     MessageBox.Show("Ошибка добавления данных в базу!");
                     return;

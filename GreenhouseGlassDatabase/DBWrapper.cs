@@ -26,7 +26,7 @@ namespace GreenhouseGlassDatabase
 
 
         public string table_name_;
-        private SQLiteConnection db_;
+        private SQLiteConnection db_ = null;
         private bool is_open_ = false;
 
 
@@ -63,13 +63,24 @@ namespace GreenhouseGlassDatabase
                 : selectQuery("select " + field + " from "+ table_name_);
         }
 
+        public DataTable selectFromTable(DBData[] dbdt, string field = "")
+        {
+            string elems = "";
+            foreach (var elem in dbdt) elems += elem.V1 + "=" + elem.V2 + " and ";
+            if (elems.Length < 4) return new DataTable();
+
+            return field == String.Empty
+                ? selectQuery("select * from "+ table_name_+" where "+elems.Substring(0, elems.Length-4))
+                : selectQuery("select " + field + " from "+ table_name_ + " where " + elems.Substring(0, elems.Length - 4));
+        }
 
 
-        public bool writeToTable(DBData[] dbdt)
+
+        public bool writeToTable(DBData[] dbdt, string table_name = "")
         {
             if (dbdt.Length == 0) return false;
 
-            string query = "insert into "+ table_name_;
+            string query = "insert into "+ (table_name == String.Empty ? table_name_ : table_name);
             string names = "";
             string values = "";
 
@@ -86,7 +97,7 @@ namespace GreenhouseGlassDatabase
         public DataTable isIsset(DBData[] dbdt)
         {
             if (dbdt.Length < 2) return new DataTable();
-            string query = "select * from "+table_name_ +" where ";
+            string query = "select * from "+table_name_+" where ";
             string elems = "";
 
             DBWrapper.DBData[] find_arr = new DBWrapper.DBData[2];
@@ -99,27 +110,18 @@ namespace GreenhouseGlassDatabase
             return selectQuery(query);
         }
 
-
-
         public bool updateInTable(DBData[] dbdt, DataTable dt)
         {
             if (dbdt.Length < 2) return false;
             string query = "update "+table_name_ + " set ";
             string id = dt.Rows[0][0].ToString();
-            int a = int.Parse(dt.Rows[0][3].ToString());
-            int b = int.Parse(dbdt[2].V2);
-            int count = a + b;
-            int width = int.Parse(dbdt[0].V2.ToString());
-            int height = int.Parse(dbdt[1].V2.ToString());
-            dbdt[2] = new DBData(dbdt[2].V1, count.ToString());
-            dbdt[3] = new DBData(dbdt[3].V1, (width * height * count).ToString());
-                        
             string fields = "";
             foreach (var elem in dbdt) fields += "'"+elem.V1 + "'='" + elem.V2 + "',";
             query += fields.Substring(0, fields.Length-1) + " where id="+id;
             
             return executeNonQuery(query);
         }
+
 
 
 
@@ -263,6 +265,7 @@ namespace GreenhouseGlassDatabase
         {
             SQLiteDataAdapter ad;
             DataTable dt = new DataTable();
+            if (!is_open_) return dt;
             try
             {
                 SQLiteCommand cmd = db_.CreateCommand();
