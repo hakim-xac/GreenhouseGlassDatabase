@@ -509,7 +509,7 @@
             // header
             // 
             this.header.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.header.Font = new System.Drawing.Font("Yu Gothic", 16F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.header.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Italic);
             this.header.Location = new System.Drawing.Point(0, 0);
             this.header.Name = "header";
             this.header.Size = new System.Drawing.Size(501, 51);

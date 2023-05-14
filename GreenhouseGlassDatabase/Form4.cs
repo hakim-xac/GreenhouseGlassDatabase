@@ -31,48 +31,40 @@ namespace GreenhouseGlassDatabase
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form5 new_form = new Form5();
+            Form7 new_form = new Form7();
             new_form.Owner = this;
             this.Visible = false;
-            new_form.setSite(int.Parse(SecondaryMethods.TypeGlassToString(TypeGlass.One)));
-            new_form.setHeight(config_.actualSize(Place.BetweenSiteHeight));
-            new_form.setWidth(785);
+            new_form.setSite(TypeGlass.One);
             new_form.ShowDialog();
             this.Visible = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form5 new_form = new Form5();
+            Form7 new_form = new Form7();
             new_form.Owner = this;
             this.Visible = false;
-            new_form.setSite(int.Parse(SecondaryMethods.TypeGlassToString(TypeGlass.Third)));
-            new_form.setHeight(config_.actualSize(Place.BetweenSiteHeight));
-            new_form.setWidth(785);
+            new_form.setSite(TypeGlass.Third);
             new_form.ShowDialog();
             this.Visible = true;
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            Form5 new_form = new Form5();
+            Form7 new_form = new Form7();
             new_form.Owner = this;
             this.Visible = false;
-            new_form.setSite(int.Parse(SecondaryMethods.TypeGlassToString(TypeGlass.Fifth)));
-            new_form.setHeight(config_.actualSize(Place.BetweenSiteHeight));
-            new_form.setWidth(785);
+            new_form.setSite(TypeGlass.Fifth);
             new_form.ShowDialog();
             this.Visible = true;
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            Form5 new_form = new Form5();
+            Form7 new_form = new Form7();
             new_form.Owner = this;
             this.Visible = false;
-            new_form.setSite(int.Parse(SecondaryMethods.TypeGlassToString(TypeGlass.Eighth)));
-            new_form.setHeight(config_.actualSize(Place.BetweenSiteHeight));
-            new_form.setWidth(785);
+            new_form.setSite(TypeGlass.Eighth);
             new_form.ShowDialog();
             this.Visible = true;
         }

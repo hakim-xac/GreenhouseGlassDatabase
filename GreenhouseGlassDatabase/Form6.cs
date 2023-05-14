@@ -49,6 +49,7 @@ namespace GreenhouseGlassDatabase
             new_form.setWidth(config_.actualSize(Place.ButtWidth));
             new_form.ShowDialog();
             this.Visible = true;
+            Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -61,6 +62,7 @@ namespace GreenhouseGlassDatabase
             new_form.setWidth(config_.actualSize(Place.ButtWidth));
             new_form.ShowDialog();
             this.Visible = true;
+            Close();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -73,6 +75,7 @@ namespace GreenhouseGlassDatabase
             new_form.setWidth(config_.actualSize(Place.ButtWidth));
             new_form.ShowDialog();
             this.Visible = true;
+            Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -85,6 +88,7 @@ namespace GreenhouseGlassDatabase
             new_form.setWidth(config_.actualSize(Place.ButtWidth));
             new_form.ShowDialog();
             this.Visible = true;
+            Close();
         }
 
         private void button12_Click(object sender, EventArgs e)
@@ -101,6 +105,7 @@ namespace GreenhouseGlassDatabase
             new_form.setWidth(config_.actualSize(Place.SideWidth));
             new_form.ShowDialog();
             this.Visible = true;
+            Close();
         }
 
         private void button11_Click(object sender, EventArgs e)
@@ -116,6 +121,7 @@ namespace GreenhouseGlassDatabase
             new_form.setWidth(config_.actualSize(Place.SideWidth));
             new_form.ShowDialog();
             this.Visible = true;
+            Close();
         }
 
         private void button10_Click(object sender, EventArgs e)
@@ -131,6 +137,7 @@ namespace GreenhouseGlassDatabase
             new_form.setWidth(config_.actualSize(Place.SideWidth));
             new_form.ShowDialog();
             this.Visible = true;
+            Close();
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -146,6 +153,7 @@ namespace GreenhouseGlassDatabase
             new_form.setWidth(config_.actualSize(Place.SideWidth));
             new_form.ShowDialog();
             this.Visible = true;
+            Close();
         }
     }
 }

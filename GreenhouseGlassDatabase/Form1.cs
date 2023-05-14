@@ -61,5 +61,11 @@ namespace GreenhouseGlassDatabase
             new_form.ShowDialog();
             this.Visible = true;
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Creator by Andrey Khakimov\r\n" +
+                "Greenhouse Glass Database: version 1.0");
+        }
     }
 }
