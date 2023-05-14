@@ -35,7 +35,6 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
@@ -66,7 +65,6 @@
             this.button11 = new System.Windows.Forms.Button();
             this.panel25 = new System.Windows.Forms.Panel();
             this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -74,7 +72,6 @@
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
-            this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -109,6 +106,7 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.label1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -153,7 +151,6 @@
             // panel5
             // 
             this.panel5.Controls.Add(this.panel6);
-            this.panel5.Controls.Add(this.panel7);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel5.Location = new System.Drawing.Point(0, 363);
             this.panel5.Name = "panel5";
@@ -163,22 +160,12 @@
             // panel6
             // 
             this.panel6.Controls.Add(this.button14);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel6.Location = new System.Drawing.Point(301, 0);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.Name = "panel6";
             this.panel6.Padding = new System.Windows.Forms.Padding(5);
-            this.panel6.Size = new System.Drawing.Size(300, 59);
+            this.panel6.Size = new System.Drawing.Size(601, 59);
             this.panel6.TabIndex = 4;
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.button13);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel7.Location = new System.Drawing.Point(0, 0);
-            this.panel7.Name = "panel7";
-            this.panel7.Padding = new System.Windows.Forms.Padding(5);
-            this.panel7.Size = new System.Drawing.Size(300, 59);
-            this.panel7.TabIndex = 3;
             // 
             // panel8
             // 
@@ -252,6 +239,7 @@
             // 
             // button1
             // 
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button1.Location = new System.Drawing.Point(5, 5);
             this.button1.Name = "button1";
@@ -259,6 +247,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "М/У 1-2";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel15
             // 
@@ -272,6 +261,7 @@
             // 
             // button2
             // 
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button2.Location = new System.Drawing.Point(5, 5);
             this.button2.Name = "button2";
@@ -279,6 +269,7 @@
             this.button2.TabIndex = 0;
             this.button2.Text = "М/У 3-4";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // panel16
             // 
@@ -292,6 +283,7 @@
             // 
             // button3
             // 
+            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button3.Location = new System.Drawing.Point(5, 5);
             this.button3.Name = "button3";
@@ -299,6 +291,7 @@
             this.button3.TabIndex = 0;
             this.button3.Text = "УЧ. №1";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // panel17
             // 
@@ -312,6 +305,7 @@
             // 
             // button4
             // 
+            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button4.Location = new System.Drawing.Point(5, 5);
             this.button4.Name = "button4";
@@ -319,6 +313,7 @@
             this.button4.TabIndex = 0;
             this.button4.Text = "УЧ. №2";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // panel18
             // 
@@ -332,6 +327,7 @@
             // 
             // button5
             // 
+            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button5.Location = new System.Drawing.Point(5, 5);
             this.button5.Name = "button5";
@@ -339,6 +335,7 @@
             this.button5.TabIndex = 0;
             this.button5.Text = "УЧ. №5";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // panel19
             // 
@@ -352,6 +349,7 @@
             // 
             // button6
             // 
+            this.button6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button6.Location = new System.Drawing.Point(5, 5);
             this.button6.Name = "button6";
@@ -359,6 +357,7 @@
             this.button6.TabIndex = 0;
             this.button6.Text = "УЧ. №6";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // panel20
             // 
@@ -372,6 +371,7 @@
             // 
             // button7
             // 
+            this.button7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button7.Location = new System.Drawing.Point(5, 5);
             this.button7.Name = "button7";
@@ -379,6 +379,7 @@
             this.button7.TabIndex = 0;
             this.button7.Text = "М/У 5-6";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // panel21
             // 
@@ -392,6 +393,7 @@
             // 
             // button8
             // 
+            this.button8.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button8.Location = new System.Drawing.Point(5, 5);
             this.button8.Name = "button8";
@@ -399,6 +401,7 @@
             this.button8.TabIndex = 0;
             this.button8.Text = "М/У 7-8";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // panel22
             // 
@@ -412,6 +415,7 @@
             // 
             // button9
             // 
+            this.button9.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button9.Location = new System.Drawing.Point(5, 5);
             this.button9.Name = "button9";
@@ -419,6 +423,7 @@
             this.button9.TabIndex = 0;
             this.button9.Text = "УЧ. №3";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // panel23
             // 
@@ -432,6 +437,7 @@
             // 
             // button10
             // 
+            this.button10.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button10.Location = new System.Drawing.Point(5, 5);
             this.button10.Name = "button10";
@@ -439,6 +445,7 @@
             this.button10.TabIndex = 0;
             this.button10.Text = "УЧ. №4";
             this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // panel24
             // 
@@ -452,6 +459,7 @@
             // 
             // button11
             // 
+            this.button11.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button11.Location = new System.Drawing.Point(5, 5);
             this.button11.Name = "button11";
@@ -459,6 +467,7 @@
             this.button11.TabIndex = 0;
             this.button11.Text = "УЧ. №7";
             this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // panel25
             // 
@@ -472,6 +481,7 @@
             // 
             // button12
             // 
+            this.button12.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button12.Location = new System.Drawing.Point(5, 5);
             this.button12.Name = "button12";
@@ -479,23 +489,15 @@
             this.button12.TabIndex = 0;
             this.button12.Text = "УЧ. №8";
             this.button12.UseVisualStyleBackColor = true;
-            // 
-            // button13
-            // 
-            this.button13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button13.Location = new System.Drawing.Point(5, 5);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(290, 49);
-            this.button13.TabIndex = 1;
-            this.button13.Text = "АБК";
-            this.button13.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // button14
             // 
+            this.button14.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button14.Location = new System.Drawing.Point(5, 5);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(290, 49);
+            this.button14.Size = new System.Drawing.Size(591, 49);
             this.button14.TabIndex = 2;
             this.button14.Text = "ПО РАЗМЕРУ";
             this.button14.UseVisualStyleBackColor = true;
@@ -518,7 +520,6 @@
             this.panel4.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
@@ -550,7 +551,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Panel panel8;
@@ -582,6 +582,5 @@
         private System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button13;
     }
 }

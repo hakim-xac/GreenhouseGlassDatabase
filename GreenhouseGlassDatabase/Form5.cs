@@ -17,13 +17,38 @@ namespace GreenhouseGlassDatabase
     {
         private DBWrapper db_;
         private DataTable dt_;
+        private int width_;
+        private int height_;
+        private int site_;
+
+        public void setWidth(int value)
+        {
+            width_ = value;
+        }
+
+        public void setHeight(int value)
+        {
+            height_ = value;
+        }
+
+        public void setSite(int value)
+        {
+            site_ = value;
+        }
+
         public Form5()
         {
             InitializeComponent();
+            width_ = 0;
+            height_ = 0;
+            site_ = 0;
         }
 
         private void Form5_FormClosing(object sender, FormClosingEventArgs e)
         {
+            width_ = 0;
+            height_ = 0;
+            site_ = 0;
             db_?.Close();
         }
 
@@ -39,9 +64,11 @@ namespace GreenhouseGlassDatabase
 
             dt_ = db_.selectFromTable("size_width, size_height");
             SecondaryMethods.fillComboBox(comboBox1, dt_);
-            textBox2.Text = dt_.Rows[0][0].ToString();
-            textBox3.Text = dt_.Rows[0][1].ToString();
+            textBox2.Text = width_ != 0 && height_ != 0 ? width_.ToString() : dt_.Rows[0][0].ToString();
+            textBox3.Text = width_ != 0 && height_ != 0 ? height_.ToString() : dt_.Rows[0][1].ToString();
+            textBox4.Text = site_ != 0 ? site_.ToString() : String.Empty;
             button1.Enabled = false;
+            ActiveControl = textBox1;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -113,11 +140,10 @@ namespace GreenhouseGlassDatabase
                 MessageBox.Show("Ошибка! Невозможно преобразорвать данные!\r\n Повторите ввод!");
                 return;
             }
-
             int db_count = int.Parse(find_data_table.Rows[0][3].ToString());
             if (db_count == 0)
             {
-                MessageBox.Show("Ошибка преобразорвания данных!\r\n Повторите ввод!");
+                MessageBox.Show("Данного размера стёкла уже закончились! :(\r\nВозможно данный размер вырезали из другого размера! ;)");
                 return;
             }
 

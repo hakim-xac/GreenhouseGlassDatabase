@@ -11,4 +11,20 @@ namespace GreenhouseGlassDatabase
         General
             , ReplacementData
     }
+
+    public enum TypeGlass{
+        Unknown
+            , BetweenSitesOneSecond
+            , BetweenSitesThirdFourth
+            , BetweenSitesFifthSixth
+            , BetweenSitesSeventhEighth
+            , One
+            , Second
+            , Third
+            , Fourth
+            , Fifth
+            , Sixth
+            , Seventh
+            , Eighth
+    }
 }

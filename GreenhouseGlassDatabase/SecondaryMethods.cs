@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GreenhouseGlassDatabase;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -11,6 +12,27 @@ namespace grocery_store
 {
     internal class SecondaryMethods
     {
+
+        public static String TypeGlassToString(TypeGlass tg)
+        {
+            switch (tg)
+            {
+                case TypeGlass.One:                         return      "1";
+                case TypeGlass.Second:                      return      "2";
+                case TypeGlass.Third:                       return      "3";
+                case TypeGlass.Fourth:                      return      "4";
+                case TypeGlass.Fifth:                       return      "5";
+                case TypeGlass.Sixth:                       return      "6";
+                case TypeGlass.Seventh:                     return      "7";
+                case TypeGlass.Eighth:                      return      "8";
+                case TypeGlass.BetweenSitesOneSecond:       return      "1/2";
+                case TypeGlass.BetweenSitesThirdFourth:     return      "3/4";
+                case TypeGlass.BetweenSitesFifthSixth:      return      "5/6";
+                case TypeGlass.BetweenSitesSeventhEighth:   return      "7/8";
+                case TypeGlass.Unknown:                     return      "-";
+                default:                                    return      "-";
+            }
+        }
 
         public static void fillDataGrid(DataGridView dg, DataTable dt, bool is_modified = false)
         {
