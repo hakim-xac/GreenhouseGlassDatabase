@@ -5,10 +5,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static GreenhouseGlassDatabase.DBWrapper;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace GreenhouseGlassDatabase
 {
@@ -105,21 +107,22 @@ namespace GreenhouseGlassDatabase
                 return;
             }
 
-            DBWrapper.DBData[] arr = { new DBWrapper.DBData("size_width", width.ToString())
-                , new DBWrapper.DBData("size_height", height.ToString())
-                , new DBWrapper.DBData("count", count.ToString())
-                , new DBWrapper.DBData("square", (height * width * count).ToString()) };
+            var arr = new List<DBWrapper.DBData>();
+            arr.Add(new DBWrapper.DBData("size_width", width.ToString()));
+            arr.Add(new DBWrapper.DBData("size_height", height.ToString()));
+            arr.Add(new DBWrapper.DBData("count", count.ToString()));
+            arr.Add(new DBWrapper.DBData("square", (height * width * count).ToString()));
 
             var find_data_table = db_.isIsset(arr);
             
             if (find_data_table.Rows.Count > 0)
             {
                 int new_count = int.Parse(find_data_table.Rows[0][3].ToString()) + int.Parse(arr[2].V2);
-
-                DBWrapper.DBData[] new_arr = { new DBWrapper.DBData("size_width", width.ToString())
-                , new DBWrapper.DBData("size_height", height.ToString())
-                , new DBWrapper.DBData("count", new_count.ToString())
-                , new DBWrapper.DBData("square", (height * width * new_count).ToString()) };
+                var new_arr = new List<DBWrapper.DBData>();
+                new_arr.Add(new DBWrapper.DBData("size_width", width.ToString()));
+                new_arr.Add(new DBWrapper.DBData("size_height", height.ToString()));
+                new_arr.Add(new DBWrapper.DBData("count", new_count.ToString()));
+                new_arr.Add(new DBWrapper.DBData("square", (height * width * new_count).ToString()));
                 
                 if (!db_.updateInTable(new_arr, find_data_table))
                 {

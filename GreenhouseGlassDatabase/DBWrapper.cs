@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SQLite;
+using System.Collections.Generic;
 
 namespace GreenhouseGlassDatabase
 {
@@ -72,9 +73,9 @@ namespace GreenhouseGlassDatabase
 
 
 
-        public bool writeToTable(DBData[] dbdt, string table_name = "")
+        public bool writeToTable(List<DBData> dbdt, string table_name = "")
         {
-            if (dbdt.Length == 0) return false;
+            if (dbdt.Count == 0) return false;
 
             string query = "insert into "+ (table_name == String.Empty ? table_name_ : table_name);
             string names = "";
@@ -86,18 +87,23 @@ namespace GreenhouseGlassDatabase
                 values += "'"+elem.V2+"',";
             }
             query += "(" + names.Substring(0, names.Length - 1) + ") values("+values.Substring(0, values.Length - 1) + ")";
-            return executeNonQuery(query);
+            try {
+                return executeNonQuery(query);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
 
-        public DataTable isIsset(DBData[] dbdt)
+        public DataTable isIsset(List<DBData> dbdt)
         {
-            if (dbdt.Length < 2) return new DataTable();
+            if (dbdt.Count < 2) return new DataTable();
             string query = "select * from "+table_name_+" where ";
             string elems = "";
 
-            DBWrapper.DBData[] find_arr = new DBWrapper.DBData[2];
-            Array.Copy(dbdt, 0, find_arr, 0, 2);
+            var find_arr = dbdt.GetRange(0, 2);
 
             foreach (var elem in find_arr) elems += elem.V1 + "="+elem.V2+" and ";
 
@@ -106,9 +112,9 @@ namespace GreenhouseGlassDatabase
             return selectQuery(query);
         }
 
-        public bool updateInTable(DBData[] dbdt, DataTable dt)
+        public bool updateInTable(List<DBData> dbdt, DataTable dt)
         {
-            if (dbdt.Length < 2) return false;
+            if (dbdt.Count < 2) return false;
             string query = "update "+table_name_ + " set ";
             string id = dt.Rows[0][0].ToString();
             string fields = "";

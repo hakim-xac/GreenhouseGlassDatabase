@@ -124,8 +124,9 @@ namespace GreenhouseGlassDatabase
                 return;
             }
 
-            DBData[] dbdt = { new DBData("size_width", width.ToString())
-            , new DBData("size_height", height.ToString()) };
+            var dbdt = new List<DBData>();
+            dbdt.Add(new DBData("size_width", width.ToString()));
+            dbdt.Add(new DBData("size_height", height.ToString()));
 
             var find_data_table = db_.isIsset(dbdt);
 
@@ -157,15 +158,17 @@ namespace GreenhouseGlassDatabase
 
             int new_count = db_count - count;
 
-            DBData[] new_dbdt = { new DBData("size_width", width.ToString())
-            , new DBData("size_height", height.ToString())
-            , new DBData("count", new_count.ToString())
-            , new DBData("square", (width*height*new_count).ToString()) };
+            var new_dbdt = new List<DBData>();
+            new_dbdt.Add(new DBData("size_width", width.ToString()));
+            new_dbdt.Add(new DBData("size_height", height.ToString()));
+            new_dbdt.Add(new DBData("count", new_count.ToString()));
+            new_dbdt.Add(new DBData("square", (width * height * new_count).ToString()));
 
-            DBWrapper.DBData[] rep_data = { new DBWrapper.DBData("size", width.ToString()+"*"+height.ToString())
-                , new DBWrapper.DBData("date", date.ToString("yyyy-MM-dd HH:mm:ss"))
-                , new DBWrapper.DBData("count", count.ToString())
-                , new DBWrapper.DBData("site", site.ToString()) };
+            var rep_data = new List<DBData>();
+            rep_data.Add(new DBWrapper.DBData("size", width.ToString() + "*" + height.ToString()));
+            rep_data.Add(new DBWrapper.DBData("date", date.ToString("yyyy-MM-dd HH:mm:ss")));
+            rep_data.Add(new DBWrapper.DBData("count", count.ToString()));
+            rep_data.Add(new DBWrapper.DBData("site", site.ToString()));
 
             if (!db_.writeToTable(rep_data, "replacement_data"))
             {
