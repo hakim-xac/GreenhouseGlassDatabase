@@ -7,6 +7,8 @@ using System.Data.SQLite;
 using System.Security.Policy;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
+using static GreenhouseGlassDatabase.DBWrapper;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GreenhouseGlassDatabase
 {
@@ -15,7 +17,7 @@ namespace GreenhouseGlassDatabase
         private Dictionary<Place, int> actual_base_;
         private static Dictionary<Place, int> database_;
         private DBWrapper db_;
-
+        
 
         public Config()
         {
@@ -48,24 +50,15 @@ namespace GreenhouseGlassDatabase
             }
             if (db_.isEmpty())
             {
-                int isWrite = 1;
-                foreach (KeyValuePair<Place, int> entry in database_)
+                if (!save(database_))
                 {
-                    var data = new List<DBWrapper.DBData>();
-                    data.Add(new DBWrapper.DBData("name", entry.Key.ToString()) );
-                    data.Add(new DBWrapper.DBData("size", entry.Value.ToString()) );
-                    isWrite &= (db_.writeToTable(data) ? 1 : 0);
-                    if (isWrite == 0)
-                    {
-                        MessageBox.Show("Ошибка! Файл с настройками не является оригинальным!\r\nПереустановите приложение!");
-                        Application.Exit();
-                    }
+                    MessageBox.Show("Ошибка! Файл с настройками не является оригинальным!\r\nПереустановите приложение!");
+                    Application.Exit();
                 }
-                
             }
 
             var actual_base_tmp = db_.selectFromTable();
-            if (actual_base_tmp.Rows.Count == 0)
+            if (actual_base_tmp.Rows.Count == 0 || actual_base_tmp.Rows.Count != database_.Count)
             {
                 actual_base_ = database_.ToDictionary(entry => entry.Key, entry => entry.Value);
                 return;
@@ -83,7 +76,6 @@ namespace GreenhouseGlassDatabase
                 }
                 actual_base_.Add(place, size);
             }
-
         }
 
         ~Config()
@@ -104,9 +96,70 @@ namespace GreenhouseGlassDatabase
         {
             return actual_base_;
         }
+
         public int actualSize(Place place)
         {
             return actual_base_[place];
         }
+
+        public bool setActualSize(Place place, string new_value)
+        {
+            if (actual_base_.TryGetValue(place, out _))
+            {
+                int value;
+                if (!int.TryParse(new_value, out value)) return false;
+                actual_base_[place] = value;
+                return true;
+            }
+            return false;
+        }
+
+        private bool save(Dictionary<Place, int> dict)
+        {
+            if (db_.isEmpty()) return insert(dict);
+            return update(dict);
+        }
+
+        private bool insert(Dictionary<Place, int> dict)
+        {
+            int is_write = 1;
+            foreach (KeyValuePair<Place, int> entry in dict)
+            {
+                var data = new List<DBWrapper.DBData>();
+                data.Add(new DBWrapper.DBData("name", entry.Key.ToString()));
+                data.Add(new DBWrapper.DBData("size", entry.Value.ToString()));
+                is_write &= (db_.writeToTable(data) ? 1 : 0);
+                if (is_write == 0)
+                {
+                    return false;
+                }
+            }
+            return is_write == 1;
+        }
+
+        private bool update(Dictionary<Place, int> dict)
+        {
+            var new_data = new List<List<DBWrapper.DBData>>();
+            foreach (KeyValuePair<Place, int> entry in dict)
+            {
+                var pair = new List<DBWrapper.DBData>();
+                pair.Add(new DBWrapper.DBData("name", entry.Key.ToString()));
+                pair.Add(new DBWrapper.DBData("size", entry.Value.ToString()));
+                new_data.Add(pair);
+            }
+            return db_.updateInTable(new_data);
+        }
+
+        public bool reset()
+        {
+            actual_base_ = database_.ToDictionary(entry => entry.Key, entry => entry.Value);
+            return save(actual_base_);
+        }
+
+        public bool save()
+        {
+            return save(actual_base_);
+        }
+
     }
 }

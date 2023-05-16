@@ -107,17 +107,17 @@ namespace GreenhouseGlassDatabase
                 return;
             }
 
-            var arr = new List<DBWrapper.DBData>();
-            arr.Add(new DBWrapper.DBData("size_width", width.ToString()));
-            arr.Add(new DBWrapper.DBData("size_height", height.ToString()));
-            arr.Add(new DBWrapper.DBData("count", count.ToString()));
-            arr.Add(new DBWrapper.DBData("square", (height * width * count).ToString()));
+            var find_arr = new List<DBWrapper.DBData>();
+            find_arr.Add(new DBWrapper.DBData("size_width", width.ToString()));
+            find_arr.Add(new DBWrapper.DBData("size_height", height.ToString()));
+            find_arr.Add(new DBWrapper.DBData("count", count.ToString()));
+            find_arr.Add(new DBWrapper.DBData("square", (height * width * count).ToString()));
 
-            var find_data_table = db_.isIsset(arr);
+            var find_data_table = db_.isIsset(find_arr);
             
             if (find_data_table.Rows.Count > 0)
             {
-                int new_count = int.Parse(find_data_table.Rows[0][3].ToString()) + int.Parse(arr[2].V2);
+                int new_count = int.Parse(find_data_table.Rows[0][3].ToString()) + int.Parse(find_arr[2].V2);
                 var new_arr = new List<DBWrapper.DBData>();
                 new_arr.Add(new DBWrapper.DBData("size_width", width.ToString()));
                 new_arr.Add(new DBWrapper.DBData("size_height", height.ToString()));
@@ -134,7 +134,7 @@ namespace GreenhouseGlassDatabase
             }
             else
             {
-                if (!db_.writeToTable(arr))
+                if (!db_.writeToTable(find_arr))
                 {
                     MessageBox.Show("Ошибка добавления данных в базу!");
                     return;

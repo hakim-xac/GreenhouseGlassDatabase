@@ -101,7 +101,6 @@ namespace GreenhouseGlassDatabase
             new_form.setHeight(site < 5 
                 ? config_.actualSize(Place.HeightFirstRowFirstAreaInSide) 
                 : config_.actualSize(Place.HeightFirstRowSecondAreaInSide));
-
             new_form.setWidth(config_.actualSize(Place.SideWidth));
             new_form.ShowDialog();
             this.Visible = true;
@@ -115,7 +114,7 @@ namespace GreenhouseGlassDatabase
             this.Visible = false;
             int site = int.Parse(SecondaryMethods.TypeGlassToString(site_));
             new_form.setSite(site);
-            new_form.setHeight(site < 5
+            new_form.setHeight(site_ < TypeGlass.Fifth
                 ? config_.actualSize(Place.HeightFirstRowFirstAreaOutSide)
                 : config_.actualSize(Place.HeightFirstRowSecondAreaOutSide));
             new_form.setWidth(config_.actualSize(Place.SideWidth));
@@ -131,7 +130,7 @@ namespace GreenhouseGlassDatabase
             this.Visible = false;
             int site = int.Parse(SecondaryMethods.TypeGlassToString(site_));
             new_form.setSite(site);
-            new_form.setHeight(site < 5
+            new_form.setHeight(site_ < TypeGlass.Fifth
                 ? config_.actualSize(Place.HeightSecondRowFirstAreaInSide)
                 : config_.actualSize(Place.HeightSecondRowSecondAreaInSide));
             new_form.setWidth(config_.actualSize(Place.SideWidth));
@@ -147,7 +146,7 @@ namespace GreenhouseGlassDatabase
             this.Visible = false;
             int site = int.Parse(SecondaryMethods.TypeGlassToString(site_));
             new_form.setSite(site);
-            new_form.setHeight(site < 5
+            new_form.setHeight(site_ < TypeGlass.Fifth
                 ? config_.actualSize(Place.HeightSecondRowFirstAreaOutSide)
                 : config_.actualSize(Place.HeightSecondRowSecondAreaOutSide));
             new_form.setWidth(config_.actualSize(Place.SideWidth));

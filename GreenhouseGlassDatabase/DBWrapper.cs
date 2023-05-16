@@ -75,6 +75,7 @@ namespace GreenhouseGlassDatabase
 
         public bool writeToTable(List<DBData> dbdt, string table_name = "")
         {
+            if (!is_open_) return false;
             if (dbdt.Count == 0) return false;
 
             string query = "insert into "+ (table_name == String.Empty ? table_name_ : table_name);
@@ -95,7 +96,6 @@ namespace GreenhouseGlassDatabase
                 return false;
             }
         }
-
 
         public DataTable isIsset(List<DBData> dbdt)
         {
@@ -122,6 +122,21 @@ namespace GreenhouseGlassDatabase
             query += fields.Substring(0, fields.Length-1) + " where id="+id;
             
             return executeNonQuery(query);
+        }
+
+        public bool updateInTable(List<List<DBData>> dbdt)
+        {
+            int is_update = 1;
+            foreach (var pair in dbdt)
+            {
+                if (pair.Count != 2) return false;
+                string query = "update " + table_name_ + " set '" + pair[1].V1 + "'='" + pair[1].V2 + "'" +
+                    " where "+ pair[0].V1+"='"+ pair[0].V2+"'";
+                bool s = executeNonQuery(query);
+                is_update &= s ? 1 : 0;
+                if (is_update == 0) return false;
+            }
+            return true;
         }
 
         private bool executeNonQuery(string query)
