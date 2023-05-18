@@ -139,6 +139,16 @@ namespace GreenhouseGlassDatabase
             return true;
         }
 
+        public DataTable selectCountAndSquare()
+        {
+            return selectFromTable("count, square");
+        }
+
+        public DataTable selectCount()
+        {
+            return selectFromTable("count");
+        }
+
         private bool executeNonQuery(string query)
         {
             SQLiteCommand cmd = db_.CreateCommand();
