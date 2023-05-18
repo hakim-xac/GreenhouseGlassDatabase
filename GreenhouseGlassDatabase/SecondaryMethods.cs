@@ -77,5 +77,6 @@ namespace grocery_store
         {
             return str.Replace("\"", "").Replace("\'", "").Replace(";", "").Replace("%", "");
         }
+
     }
 }
