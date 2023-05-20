@@ -14,14 +14,14 @@ namespace GreenhouseGlassDatabase
 {
     internal class Config
     {
-        private Dictionary<Place, int> actual_base_;
-        private static Dictionary<Place, int> database_;
+        private Dictionary<Place, ulong> actual_base_;
+        private static Dictionary<Place, ulong> database_;
         private DBWrapper db_;
         
 
         public Config()
         {
-            database_ = new Dictionary<Place, int>() {
+            database_ = new Dictionary<Place, ulong>() {
                 { Place.ButtWidth                           , 735 }
                 , { Place.SideWidth                         , 785 }
                 , { Place.HeightFirstRowFirstAreaInSide     , 1555 }
@@ -56,6 +56,7 @@ namespace GreenhouseGlassDatabase
                     Application.Exit();
                 }
             }
+            
 
             var actual_base_tmp = db_.selectFromTable();
             if (actual_base_tmp.Rows.Count == 0 || actual_base_tmp.Rows.Count != database_.Count)
@@ -64,12 +65,12 @@ namespace GreenhouseGlassDatabase
                 return;
             }
 
-            actual_base_ = new Dictionary<Place, int>();
+            actual_base_ = new Dictionary<Place, ulong>();
             foreach (DataRow row in actual_base_tmp.Rows)
             {
                 Place place;
-                int size;
-                if (!Place.TryParse(row[1].ToString(), out place) || !int.TryParse(row[2].ToString(), out size))
+                ulong size;
+                if (!Place.TryParse(row[1].ToString(), out place) || !ulong.TryParse(row[2].ToString(), out size))
                 {
                     actual_base_ = database_.ToDictionary(entry => entry.Key, entry => entry.Value);
                     return;
@@ -78,26 +79,21 @@ namespace GreenhouseGlassDatabase
             }
         }
 
-        ~Config()
-        {
-            db_?.Close();
-        }
-
-        static public Dictionary<Place, int> defaultSize()
+        static public Dictionary<Place, ulong> defaultSize()
         {
             return  database_;
         }
-        static public int defaultSize(Place place)
+        static public ulong defaultSize(Place place)
         {
             return database_[place];
         }
 
-        public Dictionary<Place, int> actualSize()
+        public Dictionary<Place, ulong> actualSize()
         {
             return actual_base_;
         }
 
-        public int actualSize(Place place)
+        public ulong actualSize(Place place)
         {
             return actual_base_[place];
         }
@@ -106,24 +102,24 @@ namespace GreenhouseGlassDatabase
         {
             if (actual_base_.TryGetValue(place, out _))
             {
-                int value;
-                if (!int.TryParse(new_value, out value)) return false;
+                ulong value;
+                if (!ulong.TryParse(new_value, out value)) return false;
                 actual_base_[place] = value;
                 return true;
             }
             return false;
         }
 
-        private bool save(Dictionary<Place, int> dict)
+        private bool save(Dictionary<Place, ulong> dict)
         {
             if (db_.isEmpty()) return insert(dict);
             return update(dict);
         }
 
-        private bool insert(Dictionary<Place, int> dict)
+        private bool insert(Dictionary<Place, ulong> dict)
         {
             int is_write = 1;
-            foreach (KeyValuePair<Place, int> entry in dict)
+            foreach (KeyValuePair<Place, ulong> entry in dict)
             {
                 var data = new List<DBWrapper.DBData>();
                 data.Add(new DBWrapper.DBData("name", entry.Key.ToString()));
@@ -137,10 +133,10 @@ namespace GreenhouseGlassDatabase
             return is_write == 1;
         }
 
-        private bool update(Dictionary<Place, int> dict)
+        private bool update(Dictionary<Place, ulong> dict)
         {
             var new_data = new List<List<DBWrapper.DBData>>();
-            foreach (KeyValuePair<Place, int> entry in dict)
+            foreach (KeyValuePair<Place, ulong> entry in dict)
             {
                 var pair = new List<DBWrapper.DBData>();
                 pair.Add(new DBWrapper.DBData("name", entry.Key.ToString()));

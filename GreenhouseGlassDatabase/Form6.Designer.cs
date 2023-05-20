@@ -526,7 +526,7 @@
             this.MinimizeBox = false;
             this.Name = "Form6";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Form6";
+            this.Text = "выбор типа стекла (Greenhouse Glass Database)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form6_FormClosing);
             this.Load += new System.EventHandler(this.Form6_Load);
             this.panel1.ResumeLayout(false);

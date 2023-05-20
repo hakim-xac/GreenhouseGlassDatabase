@@ -53,11 +53,6 @@ namespace GreenhouseGlassDatabase
 
         }
 
-        private void Form3_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            db_?.Close();
-        }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             if (!int.TryParse(textBox1.Text, out int _)) textBox1.Clear();
@@ -77,23 +72,23 @@ namespace GreenhouseGlassDatabase
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int count=0;
-            if(!int.TryParse(textBox1.Text, out count))
+            ulong count = 0;
+            if(!ulong.TryParse(textBox1.Text, out count))
             {
                 MessageBox.Show("Ошибка преобразованеия данных!\r\nПовторите ввод!");
                 return;
             }
-            int width=0;
-            int height=0;
+            ulong width =0;
+            ulong height =0;
             if (!is_empty_database_)
             {
-                 width = int.Parse(dt_.Rows[comboBox2.SelectedIndex][0].ToString());
-                 height = int.Parse(dt_.Rows[comboBox2.SelectedIndex][1].ToString());
+                 width = ulong.Parse(dt_.Rows[comboBox2.SelectedIndex][0].ToString());
+                 height = ulong.Parse(dt_.Rows[comboBox2.SelectedIndex][1].ToString());
             }
 
-            int tmp_width=0;
-            int tmp_height=0;
-            if (int.TryParse(textBox2.Text, out tmp_width) && int.TryParse(textBox3.Text, out tmp_height))
+            ulong tmp_width =0;
+            ulong tmp_height =0;
+            if (ulong.TryParse(textBox2.Text, out tmp_width) && ulong.TryParse(textBox3.Text, out tmp_height))
             {
                 width = tmp_width;
                 height = tmp_height;
@@ -117,7 +112,7 @@ namespace GreenhouseGlassDatabase
             
             if (find_data_table.Rows.Count > 0)
             {
-                int new_count = int.Parse(find_data_table.Rows[0][3].ToString()) + int.Parse(find_arr[2].V2);
+                ulong new_count = ulong.Parse(find_data_table.Rows[0][3].ToString()) + ulong.Parse(find_arr[2].V2);
                 var new_arr = new List<DBWrapper.DBData>();
                 new_arr.Add(new DBWrapper.DBData("size_width", width.ToString()));
                 new_arr.Add(new DBWrapper.DBData("size_height", height.ToString()));
@@ -129,7 +124,7 @@ namespace GreenhouseGlassDatabase
                     MessageBox.Show("Ошибка добавления данных в базу!");
                     return;
                 }
-
+                header_panel.Visible = false;
                 MessageBox.Show("Данные успешно изменены!");
             }
             else
@@ -139,7 +134,10 @@ namespace GreenhouseGlassDatabase
                     MessageBox.Show("Ошибка добавления данных в базу!");
                     return;
                 }
+
+                header_panel.Visible = false;
                 comboBox2.Items.Add(width.ToString() + "*" + height.ToString());
+                comboBox2.SelectedIndex = comboBox2.Items.Count - 1;
                 MessageBox.Show("Данные успешно добавлены!");
             }
 

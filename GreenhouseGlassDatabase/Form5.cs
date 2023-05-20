@@ -17,21 +17,21 @@ namespace GreenhouseGlassDatabase
     {
         private DBWrapper db_;
         private DataTable dt_;
-        private int width_;
-        private int height_;
-        private int site_;
+        private ulong width_;
+        private ulong height_;
+        private ulong site_;
 
-        public void setWidth(int value)
+        public void setWidth(ulong value)
         {
             width_ = value;
         }
 
-        public void setHeight(int value)
+        public void setHeight(ulong value)
         {
             height_ = value;
         }
 
-        public void setSite(int value)
+        public void setSite(ulong value)
         {
             site_ = value;
         }
@@ -49,7 +49,6 @@ namespace GreenhouseGlassDatabase
             width_ = 0;
             height_ = 0;
             site_ = 0;
-            db_?.Close();
         }
 
         private void Form5_Load(object sender, EventArgs e)
@@ -94,15 +93,15 @@ namespace GreenhouseGlassDatabase
                 MessageBox.Show("Необходимо указать высоту!\r\nПовторите ввод!");
                 return;
             }
-            int width = 0;
-            int height = 0;
-            int count = 0;
-            int site = 0;
+            ulong width = 0;
+            ulong height = 0;
+            ulong count = 0;
+            ulong site = 0;
 
-            int.TryParse(textBox2.Text, out width);
-            int.TryParse(textBox3.Text, out height);
-            int.TryParse(textBox1.Text, out count);
-            int.TryParse(textBox4.Text, out site);
+            ulong.TryParse(textBox2.Text, out width);
+            ulong.TryParse(textBox3.Text, out height);
+            ulong.TryParse(textBox1.Text, out count);
+            ulong.TryParse(textBox4.Text, out site);
 
             var date = dateTimePicker1.Value;
 
@@ -136,12 +135,12 @@ namespace GreenhouseGlassDatabase
                 return;
             }
 
-            if (!int.TryParse(find_data_table.Rows[0][3].ToString(), out int _))
+            if (!ulong.TryParse(find_data_table.Rows[0][3].ToString(), out ulong _))
             {
                 MessageBox.Show("Ошибка! Невозможно преобразорвать данные!\r\n Повторите ввод!");
                 return;
             }
-            int db_count = int.Parse(find_data_table.Rows[0][3].ToString());
+            ulong db_count = ulong.Parse(find_data_table.Rows[0][3].ToString());
             if (db_count == 0)
             {
                 MessageBox.Show("Данного размера стёкла уже закончились! :(\r\nВозможно данный размер вырезали из другого размера! ;)");
@@ -156,7 +155,7 @@ namespace GreenhouseGlassDatabase
                 return;
             }
 
-            int new_count = db_count - count;
+            ulong new_count = db_count - count;
 
             var new_dbdt = new List<DBData>();
             new_dbdt.Add(new DBData("size_width", width.ToString()));
@@ -189,7 +188,7 @@ namespace GreenhouseGlassDatabase
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (int.TryParse(textBox1.Text, out int _)) button1.Enabled = true;
+            if (ulong.TryParse(textBox1.Text, out ulong _)) button1.Enabled = true;
             else
             {
                 textBox1.Clear();
@@ -199,18 +198,18 @@ namespace GreenhouseGlassDatabase
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            if (!int.TryParse(textBox2.Text, out int _)) textBox2.Clear();
+            if (!ulong.TryParse(textBox2.Text, out ulong _)) textBox2.Clear();
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            if (!int.TryParse(textBox3.Text, out int _)) textBox3.Clear();
+            if (!ulong.TryParse(textBox3.Text, out ulong _)) textBox3.Clear();
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-            int site = 0;
-            if (!int.TryParse(textBox4.Text, out site)) textBox4.Clear();
+            ulong site = 0;
+            if (!ulong.TryParse(textBox4.Text, out site)) textBox4.Clear();
             if(site == 0 || site > 9) textBox4.Clear();
             
         }

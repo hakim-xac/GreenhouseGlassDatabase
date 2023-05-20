@@ -31,25 +31,25 @@ namespace GreenhouseGlassDatabase
         }
         private KeyValuePair<string, string> parseCountAndSquare(DataTable dt)
         {
-            int acc_count = 0;
-            int tmp_count = 0;
-            int acc_square = 0;
-            int tmp_square = 0;
+            ulong acc_count = 0;
+            ulong tmp_count = 0;
+            ulong acc_square = 0;
+            ulong tmp_square = 0;
             foreach (DataRow elem in dt.Rows)
             {
-                if(int.TryParse(elem[0].ToString(), out tmp_count)) acc_count += tmp_count;
-                if(int.TryParse(elem[1].ToString(), out tmp_square)) acc_square += tmp_square;
+                if(ulong.TryParse(elem[0].ToString(), out tmp_count)) acc_count += tmp_count;
+                if(ulong.TryParse(elem[1].ToString(), out tmp_square)) acc_square += tmp_square;
             }
             return new KeyValuePair<string, string>(acc_count.ToString(), acc_square.ToString());
         }
 
         private string parseCount(DataTable dt)
         {
-            int acc_count = 0;
-            int tmp_count = 0;
+            ulong acc_count = 0;
+            ulong tmp_count = 0;
             foreach (DataRow elem in dt.Rows)
             {
-                if (int.TryParse(elem[0].ToString(), out tmp_count)) acc_count += tmp_count;
+                if (ulong.TryParse(elem[0].ToString(), out tmp_count)) acc_count += tmp_count;
             }
             return acc_count.ToString();
         }
@@ -81,10 +81,43 @@ namespace GreenhouseGlassDatabase
             header_panel.Visible = db_.isEmpty();
         }
 
-        private void Form2_FormClosing(object sender, FormClosingEventArgs e)
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            db_?.Close();
+            ulong acc_count = 0;
+            ulong acc_square = 0;
+            int column_count_i = dataGridView1.Columns["count"].Index;
+            int column_square_i = dataGridView1.Columns.Contains("square") 
+                ? dataGridView1.Columns["square"].Index
+                : 0;
+
+            foreach (DataGridViewRow elems in dataGridView1.SelectedRows)
+            {
+                ulong tmp = 0;
+                if (ulong.TryParse(dataGridView1[column_count_i, elems.Index].Value.ToString(), out tmp)) acc_count += tmp;
+                if (column_square_i != 0 && ulong.TryParse(dataGridView1[column_square_i, elems.Index].Value.ToString(), out tmp)) acc_square += tmp;
+            }
+
+            label8.Text = acc_count.ToString();
+            label6.Text = acc_square.ToString();
         }
 
+        private void dataGridView1_KeyUp(object sender, KeyEventArgs e)
+        {
+            int col_id = dataGridView1.Columns["id"].Index;
+            if (e.KeyCode == Keys.Delete)
+            {
+                foreach (DataGridViewRow elems in dataGridView1.SelectedRows)
+                {
+                    ulong id = 0;
+                    string string_id = dataGridView1[col_id, elems.Index].Value.ToString();
+                    if (ulong.TryParse(string_id, out id))
+                    {
+                        db_.deleteFromTable(string_id);
+                    }
+                }
+                Form2_Load(sender, e);
+            }
+        }
     }
 }

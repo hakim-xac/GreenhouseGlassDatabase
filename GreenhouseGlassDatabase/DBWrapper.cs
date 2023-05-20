@@ -71,8 +71,6 @@ namespace GreenhouseGlassDatabase
                 : selectQuery("select " + field + " from "+ table_name_ + " where " + elems.Substring(0, elems.Length - 4));
         }
 
-
-
         public bool writeToTable(List<DBData> dbdt, string table_name = "")
         {
             if (!is_open_) return false;
@@ -139,6 +137,13 @@ namespace GreenhouseGlassDatabase
             return true;
         }
 
+        public void deleteFromTable(string id)
+        {
+            string query = "delete from " + table_name_ +
+                    " where id="+id;
+            executeNonQuery(query);
+        }
+
         public DataTable selectCountAndSquare()
         {
             return selectFromTable("count, square");
@@ -172,14 +177,5 @@ namespace GreenhouseGlassDatabase
             return dt;
         }
 
-        ~DBWrapper()
-        {
-            Close();
-        }
-
-        public void Close()
-        {
-            db_?.Close();
-        }
     }
 }

@@ -44,7 +44,7 @@ namespace GreenhouseGlassDatabase
             Form5 new_form = new Form5();
             new_form.Owner = this;
             this.Visible = false;
-            new_form.setSite(int.Parse(SecondaryMethods.TypeGlassToString(site_)));
+            new_form.setSite(ulong.Parse(SecondaryMethods.TypeGlassToString(site_)));
             new_form.setHeight(config_.actualSize(Place.HeightFirstRowButtAreaInSide));
             new_form.setWidth(config_.actualSize(Place.ButtWidth));
             new_form.ShowDialog();
@@ -57,7 +57,7 @@ namespace GreenhouseGlassDatabase
             Form5 new_form = new Form5();
             new_form.Owner = this;
             this.Visible = false;
-            new_form.setSite(int.Parse(SecondaryMethods.TypeGlassToString(site_)));
+            new_form.setSite(ulong.Parse(SecondaryMethods.TypeGlassToString(site_)));
             new_form.setHeight(config_.actualSize(Place.HeightFirstRowButtAreaOutSide));
             new_form.setWidth(config_.actualSize(Place.ButtWidth));
             new_form.ShowDialog();
@@ -70,7 +70,7 @@ namespace GreenhouseGlassDatabase
             Form5 new_form = new Form5();
             new_form.Owner = this;
             this.Visible = false;
-            new_form.setSite(int.Parse(SecondaryMethods.TypeGlassToString(site_)));
+            new_form.setSite(ulong.Parse(SecondaryMethods.TypeGlassToString(site_)));
             new_form.setHeight(config_.actualSize(Place.HeightSecondRowButtAreaInSide));
             new_form.setWidth(config_.actualSize(Place.ButtWidth));
             new_form.ShowDialog();
@@ -83,7 +83,7 @@ namespace GreenhouseGlassDatabase
             Form5 new_form = new Form5();
             new_form.Owner = this;
             this.Visible = false;
-            new_form.setSite(int.Parse(SecondaryMethods.TypeGlassToString(site_)));
+            new_form.setSite(ulong.Parse(SecondaryMethods.TypeGlassToString(site_)));
             new_form.setHeight(config_.actualSize(Place.HeightSecondRowButtAreaOutSide));
             new_form.setWidth(config_.actualSize(Place.ButtWidth));
             new_form.ShowDialog();
@@ -96,7 +96,7 @@ namespace GreenhouseGlassDatabase
             Form5 new_form = new Form5();
             new_form.Owner = this;
             this.Visible = false;
-            int site = int.Parse(SecondaryMethods.TypeGlassToString(site_));
+            ulong site = ulong.Parse(SecondaryMethods.TypeGlassToString(site_));
             new_form.setSite(site);
             new_form.setHeight(site < 5 
                 ? config_.actualSize(Place.HeightFirstRowFirstAreaInSide) 
@@ -112,7 +112,7 @@ namespace GreenhouseGlassDatabase
             Form5 new_form = new Form5();
             new_form.Owner = this;
             this.Visible = false;
-            int site = int.Parse(SecondaryMethods.TypeGlassToString(site_));
+            ulong site = ulong.Parse(SecondaryMethods.TypeGlassToString(site_));
             new_form.setSite(site);
             new_form.setHeight(site_ < TypeGlass.Fifth
                 ? config_.actualSize(Place.HeightFirstRowFirstAreaOutSide)
@@ -128,7 +128,7 @@ namespace GreenhouseGlassDatabase
             Form5 new_form = new Form5();
             new_form.Owner = this;
             this.Visible = false;
-            int site = int.Parse(SecondaryMethods.TypeGlassToString(site_));
+            ulong site = ulong.Parse(SecondaryMethods.TypeGlassToString(site_));
             new_form.setSite(site);
             new_form.setHeight(site_ < TypeGlass.Fifth
                 ? config_.actualSize(Place.HeightSecondRowFirstAreaInSide)
@@ -144,7 +144,7 @@ namespace GreenhouseGlassDatabase
             Form5 new_form = new Form5();
             new_form.Owner = this;
             this.Visible = false;
-            int site = int.Parse(SecondaryMethods.TypeGlassToString(site_));
+            ulong site = ulong.Parse(SecondaryMethods.TypeGlassToString(site_));
             new_form.setSite(site);
             new_form.setHeight(site_ < TypeGlass.Fifth
                 ? config_.actualSize(Place.HeightSecondRowFirstAreaOutSide)

@@ -28,9 +28,9 @@ namespace GreenhouseGlassDatabase
 
         private bool isCompare(Place place, string value)
         {
-            int tmp_value = 0;
-            int actual_value = 0;
-            if (!int.TryParse(value, out tmp_value)) return false;
+            ulong tmp_value = 0;
+            ulong actual_value = 0;
+            if (!ulong.TryParse(value, out tmp_value)) return false;
             if (!config_.actualSize().TryGetValue(place, out actual_value)) return false;
             return tmp_value == actual_value;
         }
@@ -39,7 +39,7 @@ namespace GreenhouseGlassDatabase
             return !isCompare(place, value);
         }
 
-        private void init(Dictionary<Place, int> data)
+        private void init(Dictionary<Place, ulong> data)
         {
             textBox15.Text = data[Place.ButtWidth].ToString();
             textBox16.Text = data[Place.SideWidth].ToString();

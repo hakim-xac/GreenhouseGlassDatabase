@@ -337,6 +337,7 @@
             this.MaximizeBox = false;
             this.Name = "Form5";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "(Greenhouse Glass Database)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form5_FormClosing);
             this.Load += new System.EventHandler(this.Form5_Load);
             this.panel1.ResumeLayout(false);

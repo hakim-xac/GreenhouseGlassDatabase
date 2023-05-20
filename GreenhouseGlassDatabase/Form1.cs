@@ -21,7 +21,7 @@ namespace GreenhouseGlassDatabase
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            Config config = new Config();
         }
 
         private void button1_Click(object sender, EventArgs e)

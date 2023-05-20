@@ -14,10 +14,10 @@ namespace GreenhouseGlassDatabase
     public partial class Form7 : Form
     {
         private Config config_;
-        private int narrow_width_;
-        private int middle_width_;
-        private int wide_width_;
-        private int height_;
+        private ulong narrow_width_;
+        private ulong middle_width_;
+        private ulong wide_width_;
+        private ulong height_;
         private TypeGlass type_glass_;
 
         public void setSite(TypeGlass value)
@@ -50,7 +50,7 @@ namespace GreenhouseGlassDatabase
             Form5 new_form = new Form5();
             new_form.Owner = this;
             this.Visible = false;
-            new_form.setSite(int.Parse(SecondaryMethods.TypeGlassToString(type_glass_)));
+            new_form.setSite(ulong.Parse(SecondaryMethods.TypeGlassToString(type_glass_)));
             new_form.setHeight(height_);
             new_form.setWidth(wide_width_);
             new_form.ShowDialog();
@@ -63,7 +63,7 @@ namespace GreenhouseGlassDatabase
             Form5 new_form = new Form5();
             new_form.Owner = this;
             this.Visible = false;
-            new_form.setSite(int.Parse(SecondaryMethods.TypeGlassToString(type_glass_)));
+            new_form.setSite(ulong.Parse(SecondaryMethods.TypeGlassToString(type_glass_)));
             new_form.setHeight(height_);
             new_form.setWidth(middle_width_);
             new_form.ShowDialog();
@@ -76,7 +76,7 @@ namespace GreenhouseGlassDatabase
             Form5 new_form = new Form5();
             new_form.Owner = this;
             this.Visible = false;
-            new_form.setSite(int.Parse(SecondaryMethods.TypeGlassToString(type_glass_)));
+            new_form.setSite(ulong.Parse(SecondaryMethods.TypeGlassToString(type_glass_)));
             new_form.setHeight(height_);
             new_form.setWidth(narrow_width_);
             new_form.ShowDialog();
