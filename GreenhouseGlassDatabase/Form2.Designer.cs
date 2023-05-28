@@ -33,6 +33,7 @@ namespace GreenhouseGlassDatabase
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.header_panel = new System.Windows.Forms.Panel();
@@ -54,6 +55,9 @@ namespace GreenhouseGlassDatabase
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.header_panel.SuspendLayout();
@@ -65,10 +69,12 @@ namespace GreenhouseGlassDatabase
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel10.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.panel10);
             this.panel1.Controls.Add(this.dataGridView1);
             this.panel1.Controls.Add(this.header_panel);
             this.panel1.Controls.Add(this.panel3);
@@ -81,6 +87,8 @@ namespace GreenhouseGlassDatabase
             // 
             // dataGridView1
             // 
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.LightGray;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -103,6 +111,7 @@ namespace GreenhouseGlassDatabase
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(785, 392);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             this.dataGridView1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyUp);
             // 
@@ -144,9 +153,9 @@ namespace GreenhouseGlassDatabase
             this.panel7.Controls.Add(this.panel8);
             this.panel7.Controls.Add(this.panel9);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(306, 5);
+            this.panel7.Location = new System.Drawing.Point(393, 5);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(474, 91);
+            this.panel7.Size = new System.Drawing.Size(387, 91);
             this.panel7.TabIndex = 6;
             // 
             // panel8
@@ -157,7 +166,7 @@ namespace GreenhouseGlassDatabase
             this.panel8.Location = new System.Drawing.Point(0, 43);
             this.panel8.Name = "panel8";
             this.panel8.Padding = new System.Windows.Forms.Padding(5);
-            this.panel8.Size = new System.Drawing.Size(472, 43);
+            this.panel8.Size = new System.Drawing.Size(385, 43);
             this.panel8.TabIndex = 2;
             // 
             // label6
@@ -166,7 +175,7 @@ namespace GreenhouseGlassDatabase
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label6.Location = new System.Drawing.Point(203, 5);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(264, 33);
+            this.label6.Size = new System.Drawing.Size(177, 33);
             this.label6.TabIndex = 3;
             this.label6.Text = "0";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -191,7 +200,7 @@ namespace GreenhouseGlassDatabase
             this.panel9.Location = new System.Drawing.Point(0, 0);
             this.panel9.Name = "panel9";
             this.panel9.Padding = new System.Windows.Forms.Padding(5);
-            this.panel9.Size = new System.Drawing.Size(472, 43);
+            this.panel9.Size = new System.Drawing.Size(385, 43);
             this.panel9.TabIndex = 1;
             // 
             // label8
@@ -200,7 +209,7 @@ namespace GreenhouseGlassDatabase
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label8.Location = new System.Drawing.Point(203, 5);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(264, 33);
+            this.label8.Size = new System.Drawing.Size(177, 33);
             this.label8.TabIndex = 3;
             this.label8.Text = "0";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -225,7 +234,7 @@ namespace GreenhouseGlassDatabase
             this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel6.Location = new System.Drawing.Point(5, 5);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(301, 91);
+            this.panel6.Size = new System.Drawing.Size(388, 91);
             this.panel6.TabIndex = 5;
             // 
             // panel5
@@ -236,7 +245,7 @@ namespace GreenhouseGlassDatabase
             this.panel5.Location = new System.Drawing.Point(0, 43);
             this.panel5.Name = "panel5";
             this.panel5.Padding = new System.Windows.Forms.Padding(5);
-            this.panel5.Size = new System.Drawing.Size(299, 43);
+            this.panel5.Size = new System.Drawing.Size(386, 43);
             this.panel5.TabIndex = 2;
             // 
             // label4
@@ -245,7 +254,7 @@ namespace GreenhouseGlassDatabase
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.Location = new System.Drawing.Point(203, 5);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(91, 33);
+            this.label4.Size = new System.Drawing.Size(178, 33);
             this.label4.TabIndex = 3;
             this.label4.Text = "0";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -270,7 +279,7 @@ namespace GreenhouseGlassDatabase
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
             this.panel4.Padding = new System.Windows.Forms.Padding(5);
-            this.panel4.Size = new System.Drawing.Size(299, 43);
+            this.panel4.Size = new System.Drawing.Size(386, 43);
             this.panel4.TabIndex = 1;
             // 
             // label3
@@ -279,7 +288,7 @@ namespace GreenhouseGlassDatabase
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.Location = new System.Drawing.Point(203, 5);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(91, 33);
+            this.label3.Size = new System.Drawing.Size(178, 33);
             this.label3.TabIndex = 3;
             this.label3.Text = "0";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -317,12 +326,46 @@ namespace GreenhouseGlassDatabase
             this.label1.Text = "Просмотр Базы Данных";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.button6);
+            this.panel10.Controls.Add(this.button5);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel10.Location = new System.Drawing.Point(0, 450);
+            this.panel10.Name = "panel10";
+            this.panel10.Padding = new System.Windows.Forms.Padding(3);
+            this.panel10.Size = new System.Drawing.Size(785, 43);
+            this.panel10.TabIndex = 5;
+            // 
+            // button6
+            // 
+            this.button6.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button6.Location = new System.Drawing.Point(392, 3);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(389, 37);
+            this.button6.TabIndex = 3;
+            this.button6.Text = "отправить выделенные строки на печать";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button5
+            // 
+            this.button5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button5.Location = new System.Drawing.Point(3, 3);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(389, 37);
+            this.button5.TabIndex = 2;
+            this.button5.Text = "отправить на печать всю таблицу";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(785, 594);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -339,6 +382,7 @@ namespace GreenhouseGlassDatabase
             this.panel5.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel10.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -366,5 +410,8 @@ namespace GreenhouseGlassDatabase
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button5;
     }
 }

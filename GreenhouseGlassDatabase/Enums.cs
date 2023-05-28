@@ -46,4 +46,10 @@ namespace GreenhouseGlassDatabase
             , BetweenSiteHeight
 
     }
+
+    public enum SortDirtection
+    {
+        Ascending
+            , Descending
+    }
 }

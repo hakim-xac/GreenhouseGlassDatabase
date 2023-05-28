@@ -19,9 +19,22 @@ namespace GreenhouseGlassDatabase
             InitializeComponent();
         }
 
+        private void callIsEmptyDatabase()
+        {
+            DBWrapper db = new DBWrapper("greenhouse_glass_database.db", "general");
+            var cnt = db.selectFromTable("id").Rows.Count;
+            if (cnt == 0)
+            {
+                button1.Enabled = false;
+                button3.Enabled = false;
+                button4.Enabled = false;
+            }
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             Config config = new Config();
+            callIsEmptyDatabase();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -40,6 +53,12 @@ namespace GreenhouseGlassDatabase
             this.Visible = false;
             new_form.ShowDialog();
             this.Visible = true;
+            if (new_form.isAddedToDataBase())
+            {
+                button1.Enabled = true;
+                button3.Enabled = true;
+                button4.Enabled = true;
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -50,6 +69,7 @@ namespace GreenhouseGlassDatabase
             this.Visible = false;
             new_form.ShowDialog();
             this.Visible = true;
+            callIsEmptyDatabase();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -65,7 +85,7 @@ namespace GreenhouseGlassDatabase
         private void button6_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Creator by Andrey Khakimov\r\n" +
-                "Greenhouse Glass Database: version 1.0");
+                "Greenhouse Glass Database: version 1.1");
         }
 
         private void button5_Click(object sender, EventArgs e)

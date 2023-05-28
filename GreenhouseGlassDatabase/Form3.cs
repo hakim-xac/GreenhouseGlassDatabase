@@ -19,6 +19,13 @@ namespace GreenhouseGlassDatabase
         private DBWrapper db_;
         private DataTable dt_;
         private bool is_empty_database_;
+        private bool is_added_to_database_;
+
+        public bool isAddedToDataBase()
+        {
+            return is_added_to_database_;
+        }
+
         public Form3()
         {
             InitializeComponent();
@@ -50,7 +57,7 @@ namespace GreenhouseGlassDatabase
             header_panel.Visible = false;
             dt_ = db_.selectFromTable("size_width, size_height");
             SecondaryMethods.fillComboBox(comboBox2, dt_);
-
+            is_added_to_database_ = false;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -138,6 +145,7 @@ namespace GreenhouseGlassDatabase
                 header_panel.Visible = false;
                 comboBox2.Items.Add(width.ToString() + "*" + height.ToString());
                 comboBox2.SelectedIndex = comboBox2.Items.Count - 1;
+                is_added_to_database_ = true;
                 MessageBox.Show("Данные успешно добавлены!");
             }
 

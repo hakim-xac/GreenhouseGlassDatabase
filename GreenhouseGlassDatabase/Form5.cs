@@ -62,6 +62,11 @@ namespace GreenhouseGlassDatabase
             }
 
             dt_ = db_.selectFromTable("size_width, size_height");
+            if (dt_.Rows.Count == 0)
+            {
+                MessageBox.Show("Ошибка!\r\nВ базе данных нет данных, добавьте сначала данные, затем повторите действие!");
+                Close(); return;
+            }
             SecondaryMethods.fillComboBox(comboBox1, dt_);
             textBox2.Text = width_ != 0 && height_ != 0 ? width_.ToString() : dt_.Rows[0][0].ToString();
             textBox3.Text = width_ != 0 && height_ != 0 ? height_.ToString() : dt_.Rows[0][1].ToString();

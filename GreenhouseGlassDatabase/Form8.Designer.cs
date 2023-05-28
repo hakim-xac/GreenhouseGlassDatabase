@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form8));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -399,7 +400,7 @@
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(185, 39);
             this.label18.TabIndex = 1;
-            this.label18.Text = "Высота М/У(ширина)";
+            this.label18.Text = "Высота М/У";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel50
@@ -1704,6 +1705,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(599, 400);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form8";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
