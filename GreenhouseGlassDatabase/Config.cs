@@ -79,15 +79,6 @@ namespace GreenhouseGlassDatabase
             }
         }
 
-        static public Dictionary<Place, ulong> defaultSize()
-        {
-            return  database_;
-        }
-        static public ulong defaultSize(Place place)
-        {
-            return database_[place];
-        }
-
         public Dictionary<Place, ulong> actualSize()
         {
             return actual_base_;
